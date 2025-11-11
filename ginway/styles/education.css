@@ -1,0 +1,94 @@
+/* Educational Attainment section base */
+.education {
+  background: #800000;
+  color: #fff;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* inner container for max-width and centering */
+.education-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* cards */
+.edu-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.edu-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 16px;
+  min-width: 220px;
+  max-width: 280px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+/* actions */
+.edu-actions {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.edu-actions .download-cv {
+  background: white;
+  color: #800000;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ---------- FOCUSED / "EDU-ONLY" MODE ---------- */
+/* When the user clicks the Education nav link the page enters a temporary
+   "edu-only" mode: the education section is shown under the fixed header,
+   other top-level sections are hidden visually. A first user interaction
+   (wheel/touch/keydown/click) immediately exits the mode and restores normal scrolling. */
+
+/* hide everything except header and education while edu-only is active */
+body.edu-only > *:not(.header):not(#education) {
+  display: none !important;
+}
+
+/* Focused education: match the viewport height available below the header */
+.education.focused {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+
+/* ensure inner content fits; if it does not fit, allow internal scroll */
+.education.focused .education-inner {
+  width: 100%;
+  max-height: calc(100vh - var(--header-height) - 48px);
+  overflow: auto; /* only if content is taller than available area */
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 0;
+}
+
+/* small visual hint (optional) */
+.education.focused {
+  transition: background-color 220ms ease, opacity 220ms ease;
+}
+
+/* responsive tweaks */
+@media (max-width: 800px) {
+  .edu-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .edu-card {
+    max-width: 92%;
+  }
+}

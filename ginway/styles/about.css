@@ -1,0 +1,208 @@
+.aboutems {
+  background-color: maroon;
+  color: white;
+
+  display: flex;
+  justify-content: center;       /* centers horizontally */
+  align-items: center;           /* center .meets and carousel vertically */
+  flex-wrap: wrap;
+  gap: 50px;
+
+  /* reduced top padding so content sits right below the divider */
+  padding: 8px clamp(4%, 6vw, 6%) 18px;
+  margin-top: 0;
+  box-sizing: border-box;
+
+  height: auto;
+  min-height: 0;
+}
+
+/* Responsive layout fix */
+@media (max-width: 1000px) {
+  .aboutems {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    /* keep top padding small on narrower viewports but slightly larger than desktop for breathing room */
+    padding: 20px 18px;
+    gap: 30px;
+  }
+
+  .meets {
+    order: -1;
+    max-width: 90%;
+  }
+
+  .carousel-wrapper {
+    width: 90%;
+    max-width: 350px;
+  }
+}  
+
+.meets {
+  max-width: 400px; 
+  flex: 0 0 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertically center text inside the .meets box */
+  align-items: flex-start;   /* keep left-aligned on wide screens */
+
+  margin-left: 24px;
+}
+
+.mj{
+  margin-bottom: 10px;
+}
+
+.exp {
+    background: maroon; 
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top:10px;
+}
+
+.exp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px black;
+    color: maroon;
+    background-color: white;
+}
+
+section {
+  height: auto;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 50%;
+  max-width: 500px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content:start;
+  flex-direction: column;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: 5px;
+}
+
+.card {
+  flex: 0 0 40%;
+  margin: 0 -30px;
+  opacity: 0.4;
+  transform: scale(0.8);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.card.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.card.active img {
+  border: 2px solid #fff;
+  border-radius: 50px;
+}
+
+.card img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: all 0.5s ease;
+}
+
+.carousel .card:first-child {
+  margin-left: -20px;
+}
+
+.carousel-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.prev-btn,
+.next-btn {
+    background-color: #800000;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.prev-btn { order: 1; }
+.next-btn { order: 2; }
+
+.carousel-wrapper { justify-content: center; }
+.prev-btn, .next-btn { position: static; }
+
+/* ===== RESPONSIVE ABOUT SECTION ===== */
+@media (max-width: 1000px) {
+  .aboutems {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px 16px;
+    gap: 30px;
+  }
+
+  .meets {
+    order: -1;
+    max-width: 90%;
+    margin-left: 0;
+    align-items: center;
+    flex: unset;
+  }
+
+  .carousel-wrapper {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .card img {
+    width: 160px;
+    height: 240px;
+  }
+
+  .exp {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .card img {
+    width: 130px;
+    height: 200px;
+  }
+
+  .carousel-wrapper {
+    max-width: 300px;
+  }
+
+  .aboutems {
+    padding: 12px 12px;
+    gap: 20px;
+  }
+}

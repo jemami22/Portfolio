@@ -1,0 +1,226 @@
+:root {
+  --header-height: 72px; /* default; JS will set actual height on load/resize */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10002;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(4px);
+}
+
+/* ensure page content doesn't sit under the fixed header */
+body {
+  padding-top: var(--header-height);
+  box-sizing: border-box;
+}
+
+/* small responsive tweak if header gets taller on small screens */
+@media (max-width: 600px) {
+  :root { --header-height: 80px; }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home {
+  
+  padding-top: 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background: white;
+  color: black;
+}
+
+:root {
+  --bg-color: white;
+  --text-color: black;
+  --main-color: maroon;
+}
+
+html {
+  font-size: 60%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+}
+
+html, body {
+  zoom: 100%; /* prevents zoom scaling when opening dev tools */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- HEADER ---------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 5%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ---------- LOGO ---------- */
+.logo {
+  position: absolute;
+  left: 5%;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 45px;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.logo:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.9);
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar a {
+  position: relative;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* underline effect */
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 3px;
+  background: var(--main-color);
+  transition: width 0.3s ease;
+}
+
+/* hover + active styles */
+.navbar a:hover,
+.navbar a.active {
+  color: var(--main-color);
+  transform: scale(1.05);
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+  width: 100%;
+}
+
+/* ---------- BUTTON ---------- */
+.gradient-btn {
+  position: absolute;
+  right: 5%;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  letter-spacing: 1px;
+  border: none;
+  color: white;
+  background: maroon;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.gradient-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 29, 21, 0.3);
+}
+
+/* ---------- RESPONSIVE ---------- */
+#menu-icon {
+  font-size: 3.5rem;
+  color: var(--main-color);
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  #menu-icon {
+    display: block;
+    position: absolute;
+    right: 5%;
+  }
+
+  .gradient-btn {
+    display: none;
+  }
+}
+
+.navbar.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 60px; /* below header */
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 20px 5%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  gap: 1.5rem;
+  z-index: 999;
+  animation: slideDown 0.3s ease forwards;
+}
+
+/* Small slide animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toggle “X” icon when active */
+#menu-icon.bx-x {
+  transform: none;   
+  transition: none;
+  color: maroon;    
+}
